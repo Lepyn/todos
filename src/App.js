@@ -7,28 +7,34 @@ import TasksFilter from "./components/TasksFilter";
 
 export default class App extends Component {
   state = {
-    arr: [
-      { nameTask: "completed task", done: false, id: 1 },
-      { nameTask: "editind task", done: false, id: 2 },
-      { nameTask: "active task", done: false, id: 3 },
-    ],
+    arr: [],
   };
 
   completedItem = (id) => {
     this.setState(() => {
-      const a = this.state.arr.map((el) => {
-       
-        if (el.id === id) {
-        return el.done = true
-        } 
-        
+      const a = this.state.arr.map((task) => {
+        if (id === task.id) {
+          return { ...task, done: !task.done };
+        }
+        return task;
       });
+      return {
+        arr: a,
+      };
+    });
+  };
 
-      return { 
-        arr: a 
+  onAdded = (e, nameTask) => {
+    const copy = this.state.arr.slice();
+    copy.push({ nameTask, done: false, id: Math.random() });
+    this.setState(() => {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        return {
+          arr: copy,
+        };
       }
     });
-   
   };
 
   deletedItem = (id) => {
@@ -40,16 +46,33 @@ export default class App extends Component {
     });
   };
 
+  onClearCompleted = () => {
+    this.setState(() => {
+      let clearItem = this.state.arr.filter((el) => el.done !== true);
+      return {
+        arr: clearItem,
+      };
+    });
+  };
+
+   onChoiseButtonFooter = () => { 
+    this.setState(() => { 
+      
+    })
+   }
+
   render() {
     return (
       <section className="todoapp">
-        <NewTaskForm />
+        <NewTaskForm onAdded={this.onAdded} />
         <TaskList
           data={this.state.arr}
           onDeleted={this.deletedItem}
           onCompleted={this.completedItem}
+          onActive={this.onActive}
         />
-        <Footer />
+        <Footer onClearCompleted={this.onClearCompleted} 
+        />
         <TasksFilter />
       </section>
     );

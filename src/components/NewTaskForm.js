@@ -3,15 +3,27 @@ import React, { Component } from "react";
 export default class NewTaskForm extends Component {
   state = {
     value: "",
+    isTask: false,
   };
 
   handleInput(e) {
     this.setState(() => {
       return {
+        ...this.state,
         value: e.target.value,
       };
     });
-    console.log(this.state.value);
+  }
+
+  handleKeyUp(e) {
+    if (e.keyCode === 13) {
+      this.props.onAdded(e, this.state.value);
+      this.setState(() => {
+        return {
+          ...this.state 
+        };
+      });
+    }
   }
 
   render() {
@@ -21,8 +33,8 @@ export default class NewTaskForm extends Component {
         <input
           className="new-todo"
           placeholder="What needs to be done?"
-          autoFocus
           onChange={(e) => this.handleInput(e)}
+          onKeyUp={(e) => this.handleKeyUp(e)}
         />
       </header>
     );
