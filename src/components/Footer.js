@@ -4,15 +4,13 @@ import TasksFilter from "./TasksFilter";
 export default class Footer extends Component {
   render() {
 
-    const { showCompleted, onClearCompleted, showActived} = this.props
+    const { onClearCompleted, taskFilter} = this.props
 
     return (
       <footer className="footer">
 
-          <TasksFilter   
-           data={this.props.data}
-           showActived={showActived}
-           showCompleted={showCompleted}
+          <TasksFilter  
+           taskFilter={taskFilter}
            onClearCompleted={onClearCompleted} />
 
       </footer>

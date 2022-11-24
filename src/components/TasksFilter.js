@@ -1,62 +1,26 @@
 import React, { Component } from "react";
+// import Footer from "./Footer";
 export default class TasksFilter extends Component {
   state = {
-     arr: this.props.data,
      all: true,
-     complete: false,
+     completed: false,
      active: false,
   };
 
-  onClick = (e) => { 
-    if(this.e.target.innerHTML = 'All') { 
-      this.setState({ 
-        all: true,
-        complete: false,
-        active: false
-      })
-    } else if (e.target.innerHTML = 'Active') { 
-      this.setState( { 
-        all: false,
-        complete: true,
-        active: false
-      })
-    } else if (e.target.innerHTML = 'Completed') { 
-      this.setState({ 
-        all: false,
-        complete: false,
-        active: true
-      })
-    }
-  }
-
-   
 
   render() {
-    console.log(this.state.arr);
-
-    let {all, active, complete} = this.props;
-
-    if (this.state.all) { 
-        all = 'selected'
-    }
-    if (this.state.active) { 
-      active = 'selected'
-    }
-    if (this.state.complete) { 
-      complete = 'selected'
-    }
-    
+ 
     return   ( 
       <ul className="filters">
     <span className="todo-count">1 items left</span>
     <li>
-      <button className={all} >All</button>
+      <button onClick={() => this.props.taskFilter('all')} >All</button>
     </li>
     <li>
-      <button  className={active}  onClick={() => this.showActived()}>Active</button>
+      <button  onClick={() => this.props.taskFilter("active")}>Active</button>
     </li>
     <li>
-      <button className={complete} onClick={(e) => this.props.showCompleted(e)}>Completed</button>
+      <button onClick={() => this.props.taskFilter('completed')}>Completed</button>
     </li>
   <button
     className="clear-completed"
@@ -69,3 +33,39 @@ export default class TasksFilter extends Component {
     )
   }
 }
+
+
+  // showCompleted = (e) => {
+  //   this.setState(() => {
+  //     let newArr = this.state.arr.filter((el) => el.done !== false)
+  //     console.log(newArr);
+  //     const target = e.target
+  //     target.className = 'selected'
+  //     return {
+  //       arr: newArr,
+  //     };
+  //   });
+  // };
+
+
+  // handleChoiseButton = (e) => { 
+  //   if(this.e.target.innerHTML = 'All') { 
+  //     this.setState({ 
+  //       all: true,
+  //       complete: false,
+  //       active: false
+  //     })
+  //   } else if (e.target.innerHTML = 'Active') { 
+  //     this.setState( { 
+  //       all: false,
+  //       complete: true,
+  //       active: false
+  //     })
+  //   } else if (e.target.innerHTML = 'Completed') { 
+  //     this.setState({ 
+  //       all: false,
+  //       complete: false,
+  //       active: true
+  //     })
+  //   }
+  // }
