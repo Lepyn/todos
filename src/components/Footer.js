@@ -10,7 +10,8 @@ export default class Footer extends Component {
       <footer className="footer">
 
           <TasksFilter  
-           taskFilter={taskFilter}
+           data={this.props.data}
+           taskFilter={taskFilter}  
            onClearCompleted={onClearCompleted} />
 
       </footer>

@@ -6,18 +6,18 @@ export default class TaskList extends Component {
   };
 
   render() {
-     if(this.state.choiseTasks.length <= 0) return 'нет задач'
-     if(this.props.activeButton === 'completed') { 
+    console.log(this.choiseTasks);
+
+    if (this.props.activeButton === "completed") {
       this.setState(() => {
-       const newArr = this.props.data.filter(el => el.done === true)
-       return { choiseTasks: newArr }
-      })
-     } else if (this.props.activeButton === 'all') { 
-      console.log(this.props.activeButton);
-      this.setState(() => { 
-        return { choiseTasks: this.props.data}
-      })
-     }
+        const newArr = this.props.data.filter((el) => el.done === true);
+        return { ...this.choiseTasks, newArr };
+      });
+    } else if (this.props.activeButton === "all") {
+      this.setState(() => {
+        return { ...this.choiseTasks,  };
+      });
+    }
     return (
       <ul className="todo-list">
         {this.state.choiseTasks.map((task) => {
@@ -27,11 +27,11 @@ export default class TaskList extends Component {
               data={task}
               onDeleted={this.props.onDeleted}
               onCompleted={this.props.onCompleted}
+              newTime={this.timeAddTask}
             />
           );
         })}
       </ul>
-
     );
   }
 }

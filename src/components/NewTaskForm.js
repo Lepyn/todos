@@ -17,10 +17,12 @@ export default class NewTaskForm extends Component {
 
   handleKeyUp(e) {
     if (e.keyCode === 13) {
+      if (this.state.value.trim() === "") return;
       this.props.onAdded(e, this.state.value);
       this.setState(() => {
         return {
-          ...this.state 
+          ...this.state,
+          value: "",
         };
       });
     }
@@ -29,8 +31,9 @@ export default class NewTaskForm extends Component {
   render() {
     return (
       <header className="header">
-        <h1>todos</h1>
+        <h1>Todos</h1>
         <input
+          value={this.state.value}
           className="new-todo"
           placeholder="What needs to be done?"
           onChange={(e) => this.handleInput(e)}

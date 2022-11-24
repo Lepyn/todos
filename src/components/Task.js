@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { formatDistanceToNow } from "date-fns";
 
 export default class Task extends Component {
   state = {
@@ -28,12 +29,16 @@ export default class Task extends Component {
     this.setState(() => {
       if (e.key === "Enter") {
         e.preventDefault();
-        return { ...this.state, isEdit: !this.state.isEdit};
-      }  
+        return { ...this.state, isEdit: !this.state.isEdit };
+      }
     });
   }
 
   render() {
+    const createTime = formatDistanceToNow(this.props.data.newTime, {
+      includeSeconds: true,
+    });
+
     const padding = {
       padding: 0,
       marginLeft: 40,
@@ -68,7 +73,7 @@ export default class Task extends Component {
           {!this.state.isEdit && (
             <>
               <span className="description">{this.state.value}</span>
-              <span className="created">created 17 seconds ago</span>
+              <span className="created">created {createTime} ago</span>
             </>
           )}
         </label>
