@@ -68,7 +68,7 @@ export default class Task extends Component {
           {!this.state.isEdit && (
             <>
               <span className="description">{this.state.value}</span>
-              <span className="created  ">created 17 seconds ago</span>
+              <span className="created">created 17 seconds ago</span>
             </>
           )}
         </label>

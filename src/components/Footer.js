@@ -1,27 +1,20 @@
 import React, { Component } from "react";
+import TasksFilter from "./TasksFilter";
 
 export default class Footer extends Component {
   render() {
+
+    const { showCompleted, onClearCompleted, showActived} = this.props
+
     return (
       <footer className="footer">
-        <span className="todo-count">1 items left</span>
-        <ul className="filters">
-          <li>
-            <button className="selected">All</button>
-          </li>
-          <li>
-            <button onClick={() => this.props.onActive()}>Active</button>
-          </li>
-          <li>
-            <button>Completed</button>
-          </li>
-        </ul>
-        <button
-          className="clear-completed"
-          onClick={() => this.props.onClearCompleted()}
-        >
-          Clear completed
-        </button>
+
+          <TasksFilter   
+           data={this.props.data}
+           showActived={showActived}
+           showCompleted={showCompleted}
+           onClearCompleted={onClearCompleted} />
+
       </footer>
     );
   }

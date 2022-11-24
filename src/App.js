@@ -3,12 +3,14 @@ import "./App.css";
 import NewTaskForm from "./components/NewTaskForm";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
-import TasksFilter from "./components/TasksFilter";
 
 export default class App extends Component {
   state = {
     arr: [],
+    filter: ''
   };
+
+
 
   completedItem = (id) => {
     this.setState(() => {
@@ -55,12 +57,6 @@ export default class App extends Component {
     });
   };
 
-   onChoiseButtonFooter = () => { 
-    this.setState(() => { 
-      
-    })
-   }
-
   render() {
     return (
       <section className="todoapp">
@@ -69,11 +65,11 @@ export default class App extends Component {
           data={this.state.arr}
           onDeleted={this.deletedItem}
           onCompleted={this.completedItem}
-          onActive={this.onActive}
         />
-        <Footer onClearCompleted={this.onClearCompleted} 
+        <Footer
+          data={this.state.arr}
+          onClearCompleted={this.onClearCompleted}
         />
-        <TasksFilter />
       </section>
     );
   }
