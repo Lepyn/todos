@@ -1,28 +1,28 @@
 import React, { Component } from "react";
 import Task from "./Task";
 export default class TaskList extends Component {
-  state = {
-    choiseTasks: this.props.data
-  };
+  // state = {
+  //   choiseTasks: [...this.props.data]
+  // };
 
   render() {
-    console.log(this.choiseTasks);
+    // const { activeButton, data } = this.props;
 
-    if (this.props.activeButton === "completed") {
-      this.setState(() => {
-        const newArr = this.props.data.filter((el) => el.done === true);
-        return { ...this.choiseTasks, newArr };
-      });
-    } else if (this.props.activeButton === "all") {
-      this.setState(() => {
-        return { ...this.choiseTasks,  };
-      });
-    }
+    // let taskFilterList = [...this.props.data];
+    // if (activeButton === "active") {
+    //   taskFilterList = [...data].filter((el) => el.done !== true)
+    // }
+    // if (activeButton === 'completed') { 
+    //   taskFilterList = [...data].filter((el) => el.done === true)
+    // }
+   console.log(this.props.taskFilterList);  
+
     return (
       <ul className="todo-list">
-        {this.state.choiseTasks.map((task) => {
+        {this.props.data.map((task) => {
           return (
             <Task
+              // taskFilterList={this.props.taskFilterList}
               key={task.id}
               data={task}
               onDeleted={this.props.onDeleted}

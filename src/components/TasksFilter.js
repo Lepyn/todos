@@ -12,13 +12,13 @@ state = {
       <ul className="filters">
     <span className="todo-count">{countTasks} items left</span>
     <li>
-      <button onClick={() => this.props.taskFilter('all')} >All</button>
+      <button onClick={() => this.props.taskFilter('all')} >all</button>
     </li>
     <li>
-      <button  onClick={() => this.props.taskFilter("active")}>Active</button>
+      <button  onClick={() => this.props.taskFilter("active")}>active</button>
     </li>
     <li>
-      <button onClick={() => this.props.taskFilter('completed')}>Completed</button>
+      <button onClick={() => this.props.taskFilter('completed')}>completed</button>
     </li>
   <button
     className="clear-completed"
