@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 export default class App extends Component {
   state = {
     arr: [],
-    filterArr: [],
+    activeButton: "all",
   };
 
   completedItem = (id) => {
@@ -67,28 +67,16 @@ export default class App extends Component {
   };
 
   render() {
-    let taskFilterList = [...this.state.arr];
-
-    if (this.activeButton === "active") {
-      taskFilterList = [...this.state.arr].filter((el) => el.done !== true);
-      return taskFilterList
-    }
-    if (this.activeButton === "completed") {
-      taskFilterList = [...this.state.arr].filter((el) => el.done === true);
-      return taskFilterList
-    }
-
     return (
       <section className="todoapp">
         <NewTaskForm onAdded={this.onAdded} />
         <TaskList
-          taskFilterList={this.state.taskFilterList}
+          activeButton={this.state.activeButton}
           data={this.state.arr}
           onDeleted={this.deletedItem}
           onCompleted={this.completedItem}
         />
         <Footer
-          // activeButton={this.state.activeButton}
           data={this.state.arr}
           taskFilter={this.taskFilter}
           onClearCompleted={this.onClearCompleted}
