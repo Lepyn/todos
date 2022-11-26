@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 export default class TasksFilter extends Component {
   state = {
     count: 0,
@@ -9,8 +10,10 @@ export default class TasksFilter extends Component {
     count: 0,
   }
 
-  static propTypes = {
-    count: PropTypes.number,
+  static get propTypes() {
+    return {
+      count: PropTypes.number,
+    }
   }
 
   render() {

@@ -1,22 +1,17 @@
 import React, { Component } from 'react'
+
 import './App.css'
+
 import NewTaskForm from './components/NewTaskForm'
+
 import TaskList from './components/TaskList'
+
 import Footer from './components/Footer'
-import PropTypes from 'prop-types'
 
 export default class App extends Component {
   state = {
     arr: [],
     activeButton: 'all',
-  }
-
-  static defaultProps = {
-    activeButton: 'all',
-  }
-
-  static propTypes = {
-    activeButton: PropTypes.string,
   }
 
   completedItem = (id) => {

@@ -1,39 +1,41 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 export default class NewTaskForm extends Component {
   state = {
-    value: "",
+    value: '',
     isTask: false,
-  };
-
-  static defaultProps = { 
-    isTask: false 
   }
 
-static propTypes = { 
-  isTask: PropTypes.bool
-}
-   
+  static defaultProps = {
+    isTask: false,
+  }
+
+  static get propTypes() {
+    return {
+      isTask: PropTypes.bool,
+    }
+  }
+
   handleInput(e) {
     this.setState(() => {
       return {
         ...this.state,
         value: e.target.value,
-      };
-    });
+      }
+    })
   }
 
   handleKeyUp(e) {
     if (e.keyCode === 13) {
-      if (this.state.value.trim() === "") return;
-      this.props.onAdded(e, this.state.value);
+      if (this.state.value.trim() === '') return
+      this.props.onAdded(e, this.state.value)
       this.setState(() => {
         return {
           ...this.state,
-          value: "",
-        };
-      });
+          value: '',
+        }
+      })
     }
   }
 
@@ -49,6 +51,6 @@ static propTypes = {
           onKeyUp={(e) => this.handleKeyUp(e)}
         />
       </header>
-    );
+    )
   }
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+
 import { formatDistanceToNow } from 'date-fns'
+
 import PropTypes from 'prop-types'
 
 export default class Task extends Component {
@@ -13,9 +15,11 @@ export default class Task extends Component {
     done: false,
   }
 
-  static propTypes = {
-    id: PropTypes.number,
-    done: PropTypes.bool,
+  static get propTypes() {
+    return {
+      id: PropTypes.number,
+      done: PropTypes.bool,
+    }
   }
 
   clickMarkerButton = () => {
