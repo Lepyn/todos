@@ -1,10 +1,21 @@
 import React, { Component } from "react";
 import { formatDistanceToNow } from "date-fns";
+import PropTypes from "prop-types";
 
 export default class Task extends Component {
   state = {
     value: this.props.data.nameTask,
     isEdit: false,
+  };
+
+  static defaultProps = {
+    id: Math.random(),
+    done: false,
+  };
+
+  static propTypes = {
+    id: PropTypes.number,
+    done: PropTypes.bool,
   };
 
   clickMarkerButton = () => {

@@ -1,9 +1,18 @@
 import React, { Component } from "react";
-// import Footer from "./Footer";
+import PropTypes from 'prop-types'
 export default class TasksFilter extends Component {
 state = { 
   count: 0
 }
+
+static defaultProps = { 
+  count: 0 
+}
+
+static propTypes = { 
+  count: PropTypes.number
+}
+
   render() {
 
     let countTasks = this.props.data.length

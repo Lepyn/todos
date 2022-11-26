@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types'
 
 export default class NewTaskForm extends Component {
   state = {
@@ -6,6 +7,14 @@ export default class NewTaskForm extends Component {
     isTask: false,
   };
 
+  static defaultProps = { 
+    isTask: false 
+  }
+
+static propTypes = { 
+  isTask: PropTypes.bool
+}
+   
   handleInput(e) {
     this.setState(() => {
       return {
