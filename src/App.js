@@ -1,79 +1,79 @@
-import React, { Component } from "react";
-import "./App.css";
-import NewTaskForm from "./components/NewTaskForm";
-import TaskList from "./components/TaskList";
-import Footer from "./components/Footer";
+import React, { Component } from 'react'
+import './App.css'
+import NewTaskForm from './components/NewTaskForm'
+import TaskList from './components/TaskList'
+import Footer from './components/Footer'
 import PropTypes from 'prop-types'
 
 export default class App extends Component {
   state = {
     arr: [],
-    activeButton: "all",
-  };
-
-  static defaultProps = { 
-    activeButton: 'all'
+    activeButton: 'all',
   }
 
-  static propTypes = { 
-    activeButton: PropTypes.string
+  static defaultProps = {
+    activeButton: 'all',
+  }
+
+  static propTypes = {
+    activeButton: PropTypes.string,
   }
 
   completedItem = (id) => {
     this.setState(() => {
       const a = this.state.arr.map((task) => {
         if (id === task.id) {
-          return { ...task, done: !task.done };
+          return { ...task, done: !task.done }
         }
-        return task;
-      });
+        return task
+      })
       return {
         arr: a,
-      };
-    });
-  };
+      }
+    })
+  }
 
   onAdded = (e, nameTask) => {
-    const copy = this.state.arr.slice();
+    const copy = this.state.arr.slice()
     copy.push({
       nameTask,
       done: false,
       id: Math.random(),
       newTime: new Date(),
-    });
+    })
     this.setState(() => {
       if (e.keyCode === 13) {
-        e.preventDefault();
+        e.preventDefault()
         return {
           arr: copy,
-        };
+        }
       }
-    });
-  };
+    })
+  }
 
   deletedItem = (id) => {
     this.setState(() => {
-      const newArr = this.state.arr.filter((el) => id !== el.id);
+      const newArr = this.state.arr.filter((el) => id !== el.id)
       return {
         arr: newArr,
-      };
-    });
-  };
+      }
+    })
+  }
 
   taskFilter = (activeButton) => {
     this.setState(() => {
-      return { ...this.state, activeButton };
-    });
-  };
+      return { ...this.state, activeButton }
+    })
+  }
 
   onClearCompleted = () => {
     this.setState(() => {
-      let clearItem = this.state.arr.filter((el) => el.done !== true);
+      let clearItem = this.state.arr.filter((el) => el.done !== true)
       return {
         arr: clearItem,
-      };
-    });
-  };
+      }
+    })
+  }
 
   render() {
     return (
@@ -85,12 +85,8 @@ export default class App extends Component {
           onDeleted={this.deletedItem}
           onCompleted={this.completedItem}
         />
-        <Footer
-          data={this.state.arr}
-          taskFilter={this.taskFilter}
-          onClearCompleted={this.onClearCompleted}
-        />
+        <Footer data={this.state.arr} taskFilter={this.taskFilter} onClearCompleted={this.onClearCompleted} />
       </section>
-    );
+    )
   }
 }
